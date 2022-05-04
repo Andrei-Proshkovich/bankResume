@@ -1,18 +1,18 @@
 package entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+
+//@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 public class Skills {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,5 +21,6 @@ public class Skills {
     private String nameSkill;
     @Column(name = "work_experience")
     private BigDecimal workExperience;
+
 
 }

@@ -14,9 +14,9 @@ public class UserService {
     UserService userService;
 
 
-    public List<User> users (List<User>){
-        userRepository.findAll(users);
-    }
+//    public List<User> users (List<User>){
+//        userRepository.findAll(users);
+//    }
 
 
 }
