@@ -1,8 +1,10 @@
 package entity;
 
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 
 @Setter
@@ -11,7 +13,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Address {
+@Table(name = "address",schema = "test")
+public class Address implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -6156081153727438695L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
@@ -21,4 +26,10 @@ public class Address {
     private String street;
     @Column(name = "house_number")
     private int houseNumber;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Company company;
 }
