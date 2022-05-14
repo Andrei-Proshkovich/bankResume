@@ -2,22 +2,25 @@ package controller;
 
 import entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.UserService;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1")
 public class UserController {
 
-    UserService userService;
+    private final UserService userService;
     @GetMapping(value = "/users")
-    public ResponseEntity<User> getUsers(){
-        return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+    public List<User> getUsers(){
+        return (List<User>) userService.getUsers();
     }
+       @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+    }
+
 
 }

@@ -34,6 +34,8 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.22'
 	implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
 	implementation 'junit:junit:4.13.2'
+	runtimeOnly 'org.aspectj:aspectjweaver'
+	runtimeOnly 'org.aspectj:aspectjrt'
 	testImplementation group: 'org.junit.platform', name: 'junit-platform-runner'
 	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

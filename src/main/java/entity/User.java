@@ -50,6 +50,7 @@ public class User implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     @Column(name = "first_name")
     private String firstName;
@@ -61,6 +62,7 @@ public class User implements Serializable {
     private Date dateOfBirth;
     @Column(name = "search_job")
     private boolean searchJob;
+
 
 
 
