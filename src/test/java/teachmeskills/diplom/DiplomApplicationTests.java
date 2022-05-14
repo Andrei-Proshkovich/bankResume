@@ -2,7 +2,7 @@ package teachmeskills.diplom;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import service.UserService;
+import teachmeskills.diplom.service.UserService;
 
 
 @SpringBootTest(classes = {UserService.class})
