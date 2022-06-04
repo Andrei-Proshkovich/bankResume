@@ -46,8 +46,6 @@ public class User implements Serializable {
                 '}';
     }
 
-
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -62,9 +60,4 @@ public class User implements Serializable {
     private Date dateOfBirth;
     @Column(name = "search_job")
     private boolean searchJob;
-
-
-
-
-
 }

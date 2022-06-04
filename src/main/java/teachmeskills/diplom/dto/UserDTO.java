@@ -1,15 +1,13 @@
 package teachmeskills.diplom.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
 import java.sql.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Data
 public class UserDTO {
     private Long id;
     private String firstName;

@@ -1,25 +1,38 @@
 package teachmeskills.diplom.service;
 
-import teachmeskills.diplom.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import teachmeskills.diplom.dto.UserDTO;
+import teachmeskills.diplom.entity.User;
+import teachmeskills.diplom.mapper.UserMapper;
 import teachmeskills.diplom.repository.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
+
 @Service
-
+@RequiredArgsConstructor
 public class UserService {
-
 
     private final UserRepository userRepository;
 
-public List<User>   getUsers(){
+
+
+
+    public List<User>   getUsers(){
     return userRepository.findAll();
 
 }
+
+public User createUser(UserDTO userDTO){
+    return userRepository.save(UserMapper.userToUserDTO(userDTO));
+}
+
+public List<User> findByLastName(String lastName){
+   return  userRepository.searchAllByLastName(lastName);
+}
+
     public Optional<User> findByID(Long id){
         User user = new User();
        return userRepository.findById(user.getId());
@@ -32,5 +45,12 @@ public List<User>   getUsers(){
 
         userRepository.deleteUserById(id);
 
+    }
+
+    public User getUserByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName);
+    }
+    public User getUserByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
     }
 }

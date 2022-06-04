@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface SkillsRepository extends CrudRepository<Skills,Long> {
 
+
+
     List<Skills> deleteSkillsById(Long id);
 }
