@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         locations = "classpath:application.properties")
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 
-public class UserServiceIntegrationTest {
+public class UserServiceTest {
     @Autowired
     private UserService userService;
 

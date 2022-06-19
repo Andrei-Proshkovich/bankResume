@@ -16,4 +16,8 @@ public class UserDTO {
     private Date dateOfBirth;
     private boolean searchJob;
 
+    public UserDTO(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

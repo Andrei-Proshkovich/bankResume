@@ -7,7 +7,7 @@ import teachmeskills.diplom.entity.User;
 @UtilityClass
 public class UserMapper {
 
-    public User userToUserDTO(UserDTO userDTO) {
+    public User mapToDTO(UserDTO userDTO) {
         return User.builder()
                 .dateOfBirth(userDTO.getDateOfBirth())
                 .email(userDTO.getEmail())
@@ -17,7 +17,7 @@ public class UserMapper {
                 .build();
     }
 
-    public UserDTO userDTOtoUser(User user) {
+    public UserDTO mapToEntity(User user) {
         return UserDTO.builder()
                 .dateOfBirth(user.getDateOfBirth())
                 .email(user.getEmail())

@@ -1,33 +1,30 @@
 package teachmeskills.diplom.service;
 
-import teachmeskills.diplom.entity.Skills;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import teachmeskills.diplom.dto.SkillsDTO;
+import teachmeskills.diplom.mapper.SkillsMapper;
 import teachmeskills.diplom.repository.SkillsRepository;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
-
+@RequiredArgsConstructor
 public class SkillsService {
 
-   @Autowired
-private  SkillsRepository skillsRepository;
 
-//    public SkillsService(SkillsRepository skillsRepository) {
-//        this.skillsRepository = skillsRepository;
-//    }
+private final SkillsRepository skillsRepository;
 
-    public static void main(String[] args) {
-        Skills skills = new Skills(); skills.setNameSkill("ds");
-        SkillsService service = new SkillsService();
-        service.testRepository();
+   public List<SkillsDTO> getSkills(){
+      return skillsRepository.findAll()
+              .stream()
+              .map(SkillsMapper::mapToEntity)
+              .collect(Collectors.toList());
+   }
 
-    }
-    @Transactional
-    public void testRepository(){
-        Optional<Skills> skillsOptional = skillsRepository.findById(1L);
-    }
+   public void delete(Long id){
+      skillsRepository.deleteSkillsById(id);
+   }
 }

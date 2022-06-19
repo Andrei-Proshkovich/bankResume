@@ -17,16 +17,12 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-
-
-
     public List<User>   getUsers(){
     return userRepository.findAll();
 
 }
-
 public User createUser(UserDTO userDTO){
-    return userRepository.save(UserMapper.userToUserDTO(userDTO));
+    return userRepository.save(UserMapper.mapToDTO(userDTO));
 }
 
 public List<User> findByLastName(String lastName){

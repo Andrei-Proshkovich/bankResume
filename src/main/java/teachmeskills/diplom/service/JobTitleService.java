@@ -1,23 +1,30 @@
 package teachmeskills.diplom.service;
 
-import teachmeskills.diplom.entity.JobTitle;
-import org.springframework.transaction.annotation.Transactional;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import teachmeskills.diplom.dto.JobTitleDTO;
+import teachmeskills.diplom.mapper.JobTitleMapper;
 import teachmeskills.diplom.repository.JobTitleRepository;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
+@RequiredArgsConstructor
 public class JobTitleService {
 
-    private JobTitleRepository jobTitleRepository;
+    private final JobTitleRepository jobTitleRepository;
 
-    public static void main(String[] args) {
-
-        JobTitleService jobTitleService= new JobTitleService();
-
-        jobTitleService.testRepository();
+    public List<JobTitleDTO> getAll(){
+        return jobTitleRepository.findAll()
+                .stream()
+                .map(JobTitleMapper::mapToEntity)
+                .collect(Collectors.toList());
     }
-    @Transactional
-    public void testRepository(){
-        Optional<JobTitle> skillsOptional = jobTitleRepository.findById(1L);
+    public void delete(Long id){
+        jobTitleRepository.deleteById(id);
     }
+
+
 }
+

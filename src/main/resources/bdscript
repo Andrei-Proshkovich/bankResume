@@ -1,0 +1,67 @@
+
+create table if not exists test.job_title
+(
+    id int not null auto_increment  primary key,
+
+    name_job varchar(50) not null,
+
+        constraint users_fk
+        foreign key (id) references test.users (id)
+);
+
+create table if not exists test.company
+(
+    id int not null auto_increment  primary key,
+
+    name_company varchar(100) null,
+
+    constraint company_fk
+        foreign key (id) references test.job_title (id)
+);
+
+
+
+create table if not exists test.users
+(
+    id int auto_increment
+        primary key,
+    first_name varchar(30) not null,
+    last_name varchar(30) not null,
+    email varchar(30) not null,
+    date_of_birth date not null,
+    search_job boolean
+);
+
+create table if not exists test.address
+(
+    id int not null auto_increment  primary key,
+    city varchar(100) null,
+    street varchar(50) null,
+    house_number int null,
+    constraint address_company_fk
+        foreign key (id) references test.company (id),
+
+    constraint address_user_fk
+        foreign key (id) references test.users (id)
+
+
+);
+
+create table if not exists test.resume
+(
+    id int not null auto_increment  primary key,
+
+    path_file varchar(50) not null,
+    constraint resume_skills_fk
+        foreign key (id) references test.users (id)
+);
+
+create table if not exists test.skills
+(
+    id int not null auto_increment  primary key,
+
+    name_skill varchar(50) null,
+    work_experience decimal null,
+    constraint users_skills_fk
+        foreign key (id) references test.users (id)
+);

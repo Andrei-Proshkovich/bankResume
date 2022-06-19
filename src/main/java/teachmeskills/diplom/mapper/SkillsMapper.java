@@ -7,14 +7,14 @@ import teachmeskills.diplom.entity.Skills;
 @UtilityClass
 public class SkillsMapper {
 
-    public Skills skillsToSkillsDTO(SkillsDTO skillsDTO) {
+    public Skills mapToDTO(SkillsDTO skillsDTO) {
         return Skills.builder()
                 .nameSkill(skillsDTO.getNameSkill())
                 .workExperience(skillsDTO.getWorkExperience())
                 .build();
     }
 
-    public SkillsDTO skillsDTOToSkills(Skills skills){
+    public SkillsDTO mapToEntity(Skills skills){
         return SkillsDTO.builder()
                 .nameSkill(skills.getNameSkill())
                 .workExperience(skills.getWorkExperience())

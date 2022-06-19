@@ -5,13 +5,14 @@ import teachmeskills.diplom.entity.JobTitle;
 
 public class JobTitleMapper {
 
-    public JobTitleDTO jobTitleDtoToJobTitle(JobTitle jobTitle) {
+    public static JobTitleDTO mapToEntity(JobTitle jobTitle) {
         return JobTitleDTO.builder()
+                .id(jobTitle.getId())
                 .nameJob(jobTitle.getNameJob())
                 .build();
     }
 
-    public JobTitle jobTitleToJobTitleDto(JobTitleDTO jobTitleDTO) {
+    public JobTitle mapToDTO(JobTitleDTO jobTitleDTO) {
         return JobTitle.builder()
                 .nameJob(jobTitleDTO.getNameJob())
                 .build();
