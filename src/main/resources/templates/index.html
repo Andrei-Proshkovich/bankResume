@@ -165,12 +165,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="company:${allCompanieslist}">
-            <td th:text="${company.nameCompany}"></td>
+        <tr th:each="companies:${allCompanieslist}">
+            <td th:text="${companies.nameCompany}"></td>
 
-            <td><a th:href="@{/showFormForUpdateCompany/{id}(id=${company.id})}"
+            <td><a th:href="@{/showFormForUpdateCompany/{id}(id=${companies.id})}"
                    class="btn btn-primary">Update</a>
-                <a th:href="@{/deleteCompany/{id}(id=${company.id})}"
+                <a th:href="@{/deleteCompany/{id}(id=${companies.id})}"
                    class="btn btn-danger">Delete</a>
             </td>
         </tr>

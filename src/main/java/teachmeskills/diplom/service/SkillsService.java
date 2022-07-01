@@ -2,15 +2,12 @@ package teachmeskills.diplom.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import teachmeskills.diplom.dto.SkillsDTO;
 import teachmeskills.diplom.entity.Skills;
 import teachmeskills.diplom.exception.EntityNotFoundException;
-import teachmeskills.diplom.mapper.SkillsMapper;
 import teachmeskills.diplom.repository.SkillsRepository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -20,11 +17,8 @@ public class SkillsService {
 
 private final SkillsRepository skillsRepository;
 
-   public List<SkillsDTO> getSkills(){
-      return skillsRepository.findAll()
-              .stream()
-              .map(SkillsMapper::mapToEntity)
-              .collect(Collectors.toList());
+   public List<Skills> getSkills(){
+      return skillsRepository.findAll();
    }
 
    public void delete(Long id){

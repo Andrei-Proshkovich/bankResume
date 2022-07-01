@@ -33,7 +33,7 @@ public class ResumeService {
     }
 
 
-    public Resume findByID(long id) throws EntityNotFoundException {
+    public Resume findByID(Long id) throws EntityNotFoundException {
         Optional<Resume> optionalResume = resumeRepository.findById(id);
         Resume resume = null;
         if(optionalResume.isPresent())
