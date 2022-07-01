@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import teachmeskills.diplom.dto.UserDTO;
 import teachmeskills.diplom.entity.User;
+import teachmeskills.diplom.exception.EntityNotFoundException;
 import teachmeskills.diplom.mapper.UserMapper;
 import teachmeskills.diplom.repository.UserRepository;
 
@@ -16,6 +17,8 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private     List<User> users;
+    UserService userService;
 
     public List<User>   getUsers(){
     return userRepository.findAll();
@@ -29,12 +32,15 @@ public List<User> findByLastName(String lastName){
    return  userRepository.searchAllByLastName(lastName);
 }
 
-    public Optional<User> findByID(Long id){
-        User user = new User();
-       return userRepository.findById(user.getId());
+    public User findByID(Long id) throws EntityNotFoundException {
+        Optional<User> optionalUser = userRepository.findById(id);
+        User user = null;
+        if (optionalUser.isPresent())
+            user = optionalUser.get();
+        else
+            throw new EntityNotFoundException();
+        return user;
     }
-    private     List<User> users;
-    UserService userService;
 
 
     public void deleteUser(Long id) {
@@ -48,5 +54,9 @@ public List<User> findByLastName(String lastName){
     }
     public User getUserByLastName(String lastName) {
         return userRepository.findByLastName(lastName);
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 }

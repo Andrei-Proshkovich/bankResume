@@ -1,77 +1,55 @@
 package teachmeskills.diplom.thymeleaf;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import teachmeskills.diplom.dto.UserDTO;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import teachmeskills.diplom.entity.User;
+import teachmeskills.diplom.service.UserService;
 
 @Controller
+@RequiredArgsConstructor
 public class UserThymeleafController {
 
-    private static List<UserDTO> users = new ArrayList<UserDTO>();
+    private final UserService userService;
 
-    @GetMapping(value = { "/ListUsers" })
-    public String userList(Model model) {
 
-        model.addAttribute("users", users);
-
-        return "ListUsers";
+    @GetMapping("/")
+    public String viewHomePageUsers(Model model) {
+        model.addAttribute("allUserlist", userService.getUsers());
+        return "/index";
     }
 
-
-    @Value("${welcome.message}")
-    private String message;
-
-    @Value("${error.message}")
-    private String errorMessage;
-
-    @GetMapping(value = { "/", "/index" })
-    public String index(Model model) {
-
-        model.addAttribute("message", message);
-
-        return "index";
+    @GetMapping("/addnew")
+    public String addNewUsers(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "/newUser";
     }
 
-    @GetMapping(value = { "/ListUsers" })
-    public String ListUsers(Model model) {
-
-        model.addAttribute("users", users);
-
-        return "ListUsers";
+    @PostMapping("/save")
+    public String saveUsers(@ModelAttribute("user") User user) {
+        userService.save(user);
+        return "redirect:/";
     }
 
-    @GetMapping(value = { "/addUser" })
-    public String showAddPersonPage(Model model) {
-
-        UserDTO userDTO = new UserDTO();
-        model.addAttribute("user", userDTO);
-
-        return "addUser";
+    @SneakyThrows
+    @GetMapping("/showFormForUpdate/{id}")
+    public String updateForm(@PathVariable(value = "id") long id, Model model) {
+        User user = userService.findByID(id);
+        model.addAttribute("user", user);
+        return "/updateUser";
     }
 
-    @GetMapping(value = { "/addUser" })
-    public String saveUser(Model model, //
-                             @ModelAttribute("user") UserDTO user) {
+    @GetMapping("/deleteUser/{id}")
+    public String deleteThroughId(@PathVariable(value = "id") long id) {
+        userService.deleteUser(id);
+        return "redirect:/";
 
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-
-        if (firstName != null && firstName.length() > 0 //
-                && lastName != null && lastName.length() > 0) {
-            UserDTO newUser = new UserDTO(firstName, lastName);
-            users.add(newUser);
-
-            return "redirect:/ListUsers.html";
-        }
-
-        model.addAttribute("errorMessage", errorMessage);
-        return "addUser";
     }
 
 

@@ -3,13 +3,11 @@ package teachmeskills.diplom.restController;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import teachmeskills.diplom.dto.UserDTO;
 import teachmeskills.diplom.entity.User;
 import teachmeskills.diplom.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

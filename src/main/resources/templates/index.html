@@ -1,25 +1,181 @@
-
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <meta charset="ISO-8859-1">
+    <title>BankResume</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 <body>
-<h1>Welcome</h1>
-<h2 th:utext="${message}">..!..</h2>
+<div class="container my-2">
 
-<!--
+    <h2>User List</h2>
+    <a th:href="@{/addnew}" class="btn btn-primary btn-sm mb-3">Add User</a>
+    <table style="width:80%"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>firstName</th>
+            <th>lastName</th>
+            <th>email</th>
+            <th>dateOfBirth</th>
+            <th>searchJob</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user:${allUserlist}">
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.dateOfBirth}"></td>
+            <td th:text="${user.searchJob}"></td>
 
-   In Thymeleaf the equivalent of
-   JSP's ${pageContext.request.contextPath}/edit.html
-   would be @{/edit.html}
 
-   -->
+            <td><a th:href="@{/showFormForUpdate/{id}(id=${user.id})}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteUser/{id}(id=${user.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container my-2">
 
-<a th:href="@{/ListUsers.html}">Users List</a>
+    <h2>Address List</h2>
+    <a th:href="@{/addNewAddress}" class="btn btn-primary btn-sm mb-3">Add Address</a>
+    <table style="width:80%"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>city</th>
+            <th>street</th>
+            <th>house number</th>
 
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="address:${allAddresslist}">
+            <td th:text="${address.city}"></td>
+            <td th:text="${address.street}"></td>
+            <td th:text="${address.houseNumber}"></td>
+
+
+            <td><a th:href="@{/showFormForUpdateAddress/{id}(id=${address.id})}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteAddress/{id}(id=${address.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container my-2">
+
+    <h2>Skills List</h2>
+    <a th:href="@{/addNewSkills}" class="btn btn-primary btn-sm mb-3">Add Skills</a>
+    <table style="width:80%"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>name skill</th>
+            <th>work experience</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="skills:${allSkillslist}">
+            <td th:text="${skills.nameSkill}"></td>
+            <td th:text="${skills.workExperience}"></td>
+            <td><a th:href="@{/showFormForUpdateSkills/{id}(id=${skills.id})}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteSkills/{id}(id=${skills.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+<div class="container my-2">
+
+    <h2>Resume List</h2>
+    <a th:href="@{/addnewResume}" class="btn btn-primary btn-sm mb-3">Add Resume</a>
+    <table style="width:80%"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>path to file</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="resumesses:${allResumelist}">
+            <td th:text="${resumesses.pathFile}"></td>
+
+            <td><a th:href="@{/showFormForUpdateResumes/{id}(id=${resumesses.id})}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteResume/{id}(id=${resumesses.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container my-2">
+
+    <h2>JobTitle List</h2>
+    <a th:href="@{/addNewJobTitle}" class="btn btn-primary btn-sm mb-3">Add JobTitle</a>
+    <table style="width:80%"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>name job</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jobtitles:${allJobTitleslist}">
+            <td th:text="${jobtitles.nameJob}"></td>
+
+            <td><a th:href="@{/showFormForUpdateJobTitle/{id}(id=${jobtitles.id})}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteJobTitle/{id}(id=${jobtitles.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+<div class="container my-2">
+
+    <h2>Company List</h2>
+    <a th:href="@{/addNewCompany}" class="btn btn-primary btn-sm mb-3">Add Company</a>
+    <table style="width:80%"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>name company</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="company:${allCompanieslist}">
+            <td th:text="${company.nameCompany}"></td>
+
+            <td><a th:href="@{/showFormForUpdateCompany/{id}(id=${company.id})}"
+                   class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteCompany/{id}(id=${company.id})}"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
-
 </html>

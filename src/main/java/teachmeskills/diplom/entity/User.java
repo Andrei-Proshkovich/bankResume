@@ -22,6 +22,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = -2415404651689834817L;
 
 
+  
 
     @Override
     public boolean equals(Object o) {
